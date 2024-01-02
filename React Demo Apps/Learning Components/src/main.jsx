@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from './App.jsx';
+import StateManagement from './StateManagement/StateManagement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: '/learning-components',
     element: <LearningComponents />
   },
+  {
+    path: '/state-management',
+    element: <StateManagement/>
+  }
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
