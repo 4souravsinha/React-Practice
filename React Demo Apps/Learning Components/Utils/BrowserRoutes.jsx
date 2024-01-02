@@ -6,6 +6,7 @@ import StateManagementContents from "../src/StateManagement/Contents";
 import States2 from "../src/StateManagement/States2";
 import States3 from "../src/StateManagement/States3";
 import States4 from "../src/StateManagement/States4";
+import States5 from "../src/StateManagement/States5";
 
 export const stateManagementChildren = [
   {
@@ -32,6 +33,11 @@ export const stateManagementChildren = [
     path: '/state-management/states4',
     element: <States4/>,
     name: 'React eases 2 way binding'
+  },
+  {
+    path: '/state-management/states5',
+    element: <States5/>,
+    name: 'Basic Todo List'
   }
 ]
 

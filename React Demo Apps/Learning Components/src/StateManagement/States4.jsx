@@ -14,7 +14,7 @@ const States4 = () => {
         <ul>
           <li>On editing the text area the text is printed simulataneously</li>
           <li>React eases 2 way binding</li>
-          <l1>2 way binding means change at one place can be seen at other place</l1>
+          <li>2 way binding means change at one place can be seen at other place</li>
         </ul>
       </div>
     </>
