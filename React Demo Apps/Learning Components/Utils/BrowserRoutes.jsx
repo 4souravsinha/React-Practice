@@ -4,6 +4,8 @@ import StateManagement from "../src/StateManagement/StateManagement";
 import States1 from "../src/StateManagement/States1";
 import StateManagementContents from "../src/StateManagement/Contents";
 import States2 from "../src/StateManagement/States2";
+import States3 from "../src/StateManagement/States3";
+import States4 from "../src/StateManagement/States4";
 
 export const stateManagementChildren = [
   {
@@ -20,6 +22,16 @@ export const stateManagementChildren = [
     path: '/state-management/states2',
     element: <States2/>,
     name: 'States 2'
+  },
+  {
+    path: '/state-management/states3',
+    element: <States3/>,
+    name: 'Are state of variables copied or referenced?'
+  },
+  {
+    path: '/state-management/states4',
+    element: <States4/>,
+    name: 'React eases 2 way binding'
   }
 ]
 
