@@ -1,47 +1,37 @@
 //creating a basic todo list with react
 import { useState } from 'react'
 import './States5.css'
-const DisplayTasks = ({ tasks, completedTasks, markComplete, markIncomplete }) => {
+
+
+const DisplayTasks = ({ val, completedTasks, markComplete, markIncomplete , idx }) => {
+
   return (
-    <>
-      {
-        tasks.map((val, idx) => {
-          return (
-            <div key={idx} id='todo-list-container'>
-              
-              {
-                completedTasks.includes(val) ?
-                  <span key={idx} id='todo-list-container'>
-                    <li>{val}</li>
-                    <li>{"🟢"}</li>
-                    <li>
-                      <button onClick={() => {
-                        markIncomplete(idx)
-                      }}>
-                        Reset
-                      </button>
-                    </li>
-                  </span>
-                  :
-                  <span key={idx} id='todo-list-container'>
-                    <li>{val}</li>
-                    <li>{"🟡"}</li>
-                    <li>
-                      <button onClick={() => {
-                        markComplete(idx)
-                      }}>
-                        Done
-                      </button>
-                    </li>
-                  </span>
-              }
-            </div>
-          )
-        })
-      }
-    </>
+    completedTasks.includes(val) ?
+      <ul id='todo-list-container'>
+        <li>{val}</li>
+        <li>{"🟢"}</li>
+        <li>
+          <button onClick={() => markIncomplete(idx)} >Reset</button>
+        </li>
+        <li>
+          <button>Edit Todo</button>
+        </li>
+      </ul>
+      :
+      <ul id='todo-list-container'>
+        <li>{val}</li>
+        <li>{"🟡"}</li>
+        <li>
+          <button onClick={() => markComplete(idx)} >Done</button>
+        </li>
+        <li>
+          <button>Edit Todo</button>
+        </li>
+      </ul>
   )
 }
+
+
 const States5 = () => {
   const [tasks, setTasks] = useState([])
   const [completedTasks, setCompletedTasks] = useState([])
@@ -74,7 +64,13 @@ const States5 = () => {
       <input type='text' onChange={handleChange} />
       <button onClick={addTask}>Add Task</button>
 
-      <DisplayTasks tasks={tasks} completedTasks={completedTasks} markComplete={markComplete} markIncomplete={markIncomplete} />
+      {
+        tasks.map((task, idx) => {
+          return (
+            <DisplayTasks key={idx} val={task} completedTasks={completedTasks} markComplete={markComplete} markIncomplete={markIncomplete} idx={idx} />
+          )
+        })
+      }
 
     </>
   )

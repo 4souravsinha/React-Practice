@@ -12,12 +12,13 @@ body {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  /* width: 100%; */
   /* gap: 200px; */
 }
 
 #todo-list-container li {
   list-style: none;
-  min-width: 400px;
+  width: 17rem;
   align-items: center;
 }
 
