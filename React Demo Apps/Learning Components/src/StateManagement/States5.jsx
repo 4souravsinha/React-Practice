@@ -1,85 +1,73 @@
-//creating a basic todo list with react
 import { useState } from 'react'
 import './States5.css'
 
-
-const DisplayTasks = ({ val, completedTasks, markComplete, markIncomplete , idx }) => {
-
+const EditButton = (props) => {
   return (
-    completedTasks.includes(val) ?
-      <ul id='todo-list-container'>
-        <li>{val}</li>
-        <li>{"🟢"}</li>
-        <li>
-          <button onClick={() => markIncomplete(idx)} >Reset</button>
-        </li>
-        <li>
-          <button>Edit Todo</button>
-        </li>
-      </ul>
-      :
-      <ul id='todo-list-container'>
-        <li>{val}</li>
-        <li>{"🟡"}</li>
-        <li>
-          <button onClick={() => markComplete(idx)} >Done</button>
-        </li>
-        <li>
-          <button>Edit Todo</button>
-        </li>
-      </ul>
+    <button onClick={() => {
+      props.isEditing && props.saveEdit()
+      props.setIsEditing(!props.isEditing)
+    }
+    }>
+      {"Edit"}
+    </button>
   )
 }
 
+const TodoItem = (props) => {
+  const [finished, setFinished] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editBoxVal, setEditBoxVal] = useState('')
+  return (
+    <ul id={props.item.id} >
+      {
+        isEditing ?
+          <input value={editBoxVal} onChange={(e) => {
+            setEditBoxVal(e.target.value);
+          }} />
+          :
+          <li>{props.item.data}</li>
+      }
+      <li>
+        <button onClick={() => setFinished(!finished)} >
+          {finished ? "Redo" : "Done"}
+        </button>
+        <EditButton setIsEditing={setIsEditing} isEditing={isEditing} />
+      </li>
+    </ul>
+  )
+}
+
+const Todo = (props) => {
+
+  const [items, setItems] = useState([
+    { data: 'item1', id: 1 },
+    { data: 'item2', id: 2 },
+    { data: 'item3', id: 3 }
+  ]);
+
+  const saveEdit = (id , newTodo)=>{
+    const newData = items.map((val)=>{
+      if(val.id === id){
+        return {data: newTodo , id: id}
+      }
+      return {data: val.data , id: val.id}
+    })
+    setItems(newData)
+  }
+  
+  const todoItems = items.map((item) => {
+    return <TodoItem item={item} key={item.id} />
+  })
+  // console.log(todoItems);
+  return <div>{todoItems}</div>
+}
 
 const States5 = () => {
-  const [tasks, setTasks] = useState([])
-  const [completedTasks, setCompletedTasks] = useState([])
 
-  const [text, setText] = useState('');
-  const handleChange = function (event) {
-    setText(event.target.value)
-  }
-  const addTask = () => {
-    if (tasks.includes(text)) return;
-    setTasks([...tasks, text]);
-  }
-
-  const markComplete = (idx) => {
-    console.log(`Task ${tasks[idx]} completed`)
-    setCompletedTasks([...completedTasks, tasks[idx]])
-  }
-
-  const markIncomplete = (idx) => {
-    let newCompletedTaskList = []
-    for (let i = 0; i < completedTasks.length; i++) {
-      if (completedTasks[i] === tasks[idx]) continue;
-      newCompletedTaskList.push(completedTasks[i])
-    }
-    setCompletedTasks(newCompletedTaskList);
-    console.log(`Task ${tasks[idx]} added to queue again`)
-  }
   return (
-    <>
-      <input type='text' onChange={handleChange} />
-      <button onClick={addTask}>Add Task</button>
-
-      {
-        tasks.map((task, idx) => {
-          return (
-            <DisplayTasks key={idx} val={task} completedTasks={completedTasks} markComplete={markComplete} markIncomplete={markIncomplete} idx={idx} />
-          )
-        })
-      }
-
-    </>
+    <Todo />
+    // <div>Hello</div>
   )
 }
 
 export default States5
-
-/**
- * Requirements
- * a list of tasks
- * 
- */

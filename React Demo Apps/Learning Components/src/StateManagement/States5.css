@@ -4,7 +4,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-#todo-list-container {
+ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,14 +12,7 @@ body {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  /* width: 100%; */
-  /* gap: 200px; */
-}
-
-#todo-list-container li {
   list-style: none;
-  width: 17rem;
-  align-items: center;
 }
 
 button {
@@ -33,11 +26,4 @@ button {
 
 button:hover {
   background-color: #0056b3;
-}
-
-input[type='text'] {
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
 }
