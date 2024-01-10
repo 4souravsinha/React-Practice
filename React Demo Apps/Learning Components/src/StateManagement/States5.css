@@ -1,10 +1,10 @@
-/* States5.css */
+States5.css
 
 body {
   font-family: Arial, sans-serif;
 }
 
-ul {
+.todo-instance {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +15,7 @@ ul {
   list-style: none;
 }
 
-button {
+.todo-button {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -24,6 +24,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.todo-button:hover {
   background-color: #0056b3;
 }

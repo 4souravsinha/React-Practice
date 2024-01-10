@@ -4,7 +4,7 @@ import React, {useCallback} from 'react'
 
 const EditButton = (props) => {
   return (
-    <button onClick={
+    <button className="todo-button" onClick={
       props.isEditing ?
         () => {
           props.saveEdit(props.id, props.editBoxVal)
@@ -23,7 +23,7 @@ const TodoItem = React.memo(function TodoItem (props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editBoxVal, setEditBoxVal] = useState('')
   return (
-    <ul id={props.item.id} >
+    <ul id={props.item.id} className='todo-instance' >
       {
         isEditing ?
           <input value={editBoxVal} onChange={(e) => {
@@ -33,7 +33,7 @@ const TodoItem = React.memo(function TodoItem (props) {
           <li>{props.item.data}</li>
       }
       <li>
-        <button onClick={() => setFinished(!finished)} >
+        <button className="todo-button" onClick={() => setFinished(!finished)} >
           {finished ? "Redo" : "Done"}
         </button>
         <EditButton
@@ -76,7 +76,7 @@ const Todo = () => {
   return (
     <>
       <input value={newItemVal} onChange={(e)=>setNewItemVal(e.target.value)}></input>
-      <button onClick={()=>{
+      <button className="todo-button" onClick={()=>{
         setItems([...items , {data: newItemVal , id: (new Date()).getTime() }])
         setNewItemVal('')
       }}>
