@@ -10,6 +10,18 @@
   font-size: larger;
 }
 
-.tweet-likes{
+
+.like-time-wrapper{
   font-size: small;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* padding: 2px; */
+}
+
+.tweet-content-n-edit{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
