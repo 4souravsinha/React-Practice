@@ -1,0 +1,15 @@
+.tweet-wrapper{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  padding: 1rem;
+  font-size: larger;
+}
+
+.tweet-likes{
+  font-size: small;
+}
