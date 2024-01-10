@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useCallback} from "react"
 import AddTweet from "./AddTweet"
 import TweetList from "./TweetList"
 const dummytweets = [
@@ -21,28 +21,36 @@ const dummytweets = [
     createdAt: new Date()
   }
 ]
+
 const Twitter = () => {
   const [tweets, setTweets] = useState(dummytweets)
-  const handleAddTweet = (tweet) => {
-    const newTweet = {
-      content: tweet,
-      likes: Math.floor(Math.random() * 100),
-      id: tweets.length > 0 ? tweets[tweets.length - 1].id + 1 : 0,
-      createdAt: new Date()
-    }
-    setTweets([...tweets, newTweet])
-  }
-  const handleEditTweet=(newtweet, tweetId)=>{
-    const temptweets = [...tweets]
-    const filteredTweet = temptweets.filter((tweet)=>tweet.id === tweetId)
-    filteredTweet[0].content = newtweet;
-    setTweets(temptweets)
-  }
-  const handleSortTweets=()=>{
-    const temptweets = tweets.map((val)=>val)
-    temptweets.sort((a,b)=>b.createdAt.getTime() - a.createdAt.getTime())
-    setTweets(temptweets)
-  }
+
+  const handleAddTweet = useCallback((tweet) => {
+    setTweets((prevTweets) => {
+      const newTweet = {
+        content: tweet,
+        likes: Math.floor(Math.random() * 100),
+        id: prevTweets.length > 0 ? prevTweets[prevTweets.length - 1].id + 1 : 0,
+        createdAt: new Date()
+      }
+      return [...prevTweets, newTweet];
+    });
+  }, []);
+
+  const handleEditTweet = useCallback((newtweet, tweetId) => {
+    setTweets((prevTweets) => {
+      return prevTweets.map((tweet) => 
+        tweet.id === tweetId ? { ...tweet, content: newtweet } : tweet
+      );
+    });
+  }, []);
+
+  const handleSortTweets = useCallback(() => {
+    setTweets((prevTweets) => {
+      return [...prevTweets].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    });
+  }, []);
+
   return (
     <div>
       <AddTweet handleAddTweet={handleAddTweet} />
