@@ -3,8 +3,6 @@ import { useState } from "react";
 // import TodoContext from "../context/TodoContext";
 
 const Todo = ({ content, id, isFinished, editTodo, finishTodo, deleteTodo }) => {
-  console.log(`finished for ${id} is ${isFinished}`)
-  // const { todoDispatch } = useContext(TodoContext);
   const [text, setText] = useState(content)
   const [isEditing, setIsEditing] = useState(false)
   return (
@@ -23,7 +21,7 @@ const Todo = ({ content, id, isFinished, editTodo, finishTodo, deleteTodo }) => 
       <button
         onClick={() => {
           if (isEditing) {
-            editTodo(text, id)
+            editTodo(id, text)
             setIsEditing(false)
           } else {
             setIsEditing(true)
