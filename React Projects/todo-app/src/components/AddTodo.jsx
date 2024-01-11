@@ -6,15 +6,21 @@ const AddTodo = () => {
   return (
     <div className='add-todo-wrapper'>
       <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={() => todoDispatch(
-        {
-          type: "add_todo",
-          payload: {
-            content: text
+      <button onClick={() => {
+        todoDispatch(
+          {
+            type: "add_todo",
+            payload: {
+              content: text
+            }
           }
-        })}>
-          Add Todo
-        </button>
+        )
+        setText('')
+      }
+      }
+      >
+        Add Todo
+      </button>
     </div>
   )
 }
