@@ -1,9 +1,9 @@
+let id = 0
 function TodoReducer(state , action){
-  let id = 0;
   if(action.type === 'add_todo'){
     const newTodo = {
       "id": ++id,
-      "content": action.payload.value,
+      "content": action.payload.content,
       "isFinished": false
     }
     const newState = [...state , newTodo]
