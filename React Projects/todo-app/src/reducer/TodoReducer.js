@@ -12,7 +12,7 @@ function TodoReducer(state , action){
   else if(action.type === 'edit_todo'){
     const newState = state.map((todo)=>{
       if(todo.id === action.payload.id){
-        todo.content = action.payload.content
+        return {...todo , content: action.payload.content}
       }
       return todo
     })
@@ -21,10 +21,11 @@ function TodoReducer(state , action){
   else if(action.type === 'finish_todo'){
     const newState = state.map((todo)=>{
       if(todo.id === action.payload.id){
-        todo.isFinished = !todo.isFinished
+        return {...todo , isFinished: !todo.isFinished}
       }
       return todo
     })
+    console.log(newState)
     return newState
   }
   else if(action.type === 'delete_todo'){
